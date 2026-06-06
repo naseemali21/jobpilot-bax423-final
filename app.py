@@ -25,11 +25,11 @@ def load_model():
 
 @st.cache_data
 def load_jobs():
-    return pd.read_csv("data/jobpilot_jobs_with_embedding_text.csv")
+    return pd.read_csv("data/jobpilot_jobs_with_embedding_text_deploy.csv")
 
 @st.cache_resource
 def load_faiss_index():
-    return faiss.read_index("artifacts/job_faiss.index")
+    return faiss.read_index("artifacts/job_faiss_deploy.index")
 
 model = load_model()
 jobs_df = load_jobs()
@@ -498,7 +498,7 @@ with tab1:
             from google import genai
             import time
 
-            api_key = os.getenv("GEMINI_API_KEY")
+            api_key = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY", None)
 
             if not api_key:
                 return "Missing GEMINI_API_KEY. Add your Gemini API key as an environment variable or Streamlit secret."
