@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy<2
+sentence-transformers
+faiss-cpu
+pypdf
+google-genai
+tqdm
+python-dotenv
